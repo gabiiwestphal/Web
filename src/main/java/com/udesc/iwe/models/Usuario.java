@@ -18,7 +18,7 @@ public class Usuario {
 	@Id //chave primaria
 	@Column(name= "id_usuario")
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //o id é serial, auto incremento
-	private Long id_usuario;
+	private Long idUsuario;
 	
 	@NotBlank
 	@Column(name= "cpf", unique = true, nullable = false)

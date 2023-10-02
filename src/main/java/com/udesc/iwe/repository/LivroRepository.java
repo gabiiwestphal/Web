@@ -9,15 +9,19 @@ import com.udesc.iwe.models.Livro;
 
 public interface LivroRepository extends JpaRepository<Livro, Long> {
 
-	@Query("SELECT l FROM Livro l WHERE l.nome = :nome")
-    List<Livro> findByNome(@Param("nome") String nome);
-	//achar livro pelo nome
+	@Query(nativeQuery = true, value = "SELECT * FROM livro WHERE nome = :nomeLivro")
+    List<Livro> findByNomeLivro(@Param("nomeLivro") String nomeLivro);
 	
-	@Query("SELECT l FROM Livro l WHERE l.categoria.nome = :nomeCategoria")
-    List<Livro> findByNomeCategoria(@Param("nomeCategoria") String nomeCategoria);
-	//achar livro pela categoria
-	
-	@Query("SELECT l FROM Livro l")
+	//retorna lista de livros pelo nome
+
+    @Query(nativeQuery = true, value = "SELECT * FROM livro WHERE id_categoria = :idCategoria")
+    List<Livro> findByCategoriaId(@Param("idCategoria") Long idCategoria);
+    
+    //retorna lista de livros com base no id_categoria
+
+    @Query(nativeQuery = true, value = "SELECT * FROM livro")
     List<Livro> findAllLivros();
-	//achar todos os livros sem filtro
+    
+    //retorna todos os livros
 }
+
