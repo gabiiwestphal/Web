@@ -31,8 +31,7 @@ public class RespostaService {
 	}
 	
 	//cálculo da categoria mais votada com base nas respostas
-	public Categoria calcularCategoriaMaisVotada(Long idPergunta) {
-		List<Resposta> respostas = consultarRespostasPorIdPergunta(idPergunta);
+	public Categoria calcularCategoriaMaisVotada(List<Resposta> respostas) {
 		
 		Map<Categoria, Integer> contagemCategorias = new HashMap<>();
 		Categoria categoriaMaisVotada = null;

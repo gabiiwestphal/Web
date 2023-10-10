@@ -15,4 +15,8 @@ public interface RespostaRepository extends JpaRepository<Resposta, Long>{
 	    List<Resposta> findRespostasByPerguntaId(@Param("idPergunta") Long idPergunta);
 	
 	    //retorna uma lista de respostas associadas a uma pergunta, pelo id_pergunta
+
+	@Query(nativeQuery = true, value = "SELECT * FROM sua_tabela WHERE id_usuario = :idUsuario")
+    List<Resposta> findRespostasByUsuarioId(@Param("idUsuario") Long idUsuario);
 }
+
