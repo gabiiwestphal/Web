@@ -2,6 +2,7 @@ package com.udesc.iwe.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.udesc.iwe.exception.LivroNaoEncontrado;
@@ -13,6 +14,7 @@ public class LivroService {
 	
 	private final LivroRepository livroRepository;
 	
+	@Autowired
 	public LivroService(LivroRepository livroRepository) {
 		this.livroRepository = livroRepository;
 	}
@@ -64,5 +66,9 @@ public class LivroService {
 
             return livroRepository.save(livroExistente);
         }
+	
+	public List<Livro> listarLivrosPorCategoria(Long idCategoria){
+		return livroRepository.findByCategoriaId(idCategoria);
+	}
 
 }
