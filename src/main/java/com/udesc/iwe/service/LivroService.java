@@ -50,7 +50,6 @@ public class LivroService {
 	public Livro atualizarLivro(Long idLivro, Livro livroAtualizado) {
         Livro livroExistente = livroRepository.findById(idLivro).orElseThrow(() -> new LivroNaoEncontrado("Livro não encontrado com o id: " + idLivro));
 
-        if (livroExistente != null) {
     
             livroExistente.setTitulo(livroAtualizado.getTitulo());
             livroExistente.setCategoria(livroAtualizado.getCategoria());
@@ -65,8 +64,5 @@ public class LivroService {
 
             return livroRepository.save(livroExistente);
         }
-
-        return null; // Retorne null se o livro não for encontrado
-    }
 
 }

@@ -57,15 +57,12 @@ public class UsuarioService {
 		Long idUsuario = usuarioAtualizado.getIdUsuario();
 		Usuario usuarioExistente= usuarioRepository.findById(idUsuario).orElseThrow(() -> new UsuarioNaoEncontrado("Usuário não encontrado com o id: " + idUsuario));
 		
-		if(usuarioExistente != null) {
 		usuarioExistente.setNome(usuarioAtualizado.getNome());
 		usuarioExistente.setCpf(usuarioAtualizado.getCpf());
 		usuarioExistente.setEmail(usuarioAtualizado.getEmail());
 		usuarioExistente.setSenha(usuarioAtualizado.getSenha());
 		
 		return usuarioRepository.save(usuarioExistente);
-	}
-		return null;
 	}
 	
 	public Usuario buscarUsuarioPorId(Long idUsuario) {
