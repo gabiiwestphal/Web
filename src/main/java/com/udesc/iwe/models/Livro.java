@@ -26,7 +26,34 @@ public class Livro {
 	private Categoria categoria;
 	
 	@NotBlank
-	@Column(name= "nome", nullable = false)
-	private String nome;
+	@Column(name= "titulo", nullable = false)
+	private String titulo;
+	
+	@NotBlank
+	@Column(name= "descricao", nullable = false)
+	private String descricao;
+	
+	@NotBlank
+    @Column(name = "autor", nullable = false)
+    private String autor;
 
+	@NotBlank
+    @Column(name = "pagina")
+    private Integer pagina;
+
+    @Column(name = "classificacao")
+    private Double classificacao;
+
+    @Column(name = "avaliacao")
+    private Integer avaliacao;
+
+	@NotBlank
+    @Column(name = "subtitulo")
+    private String subtitulo;
+
+	@NotBlank
+    @Column(name = "ano_publicacao")
+    private String anoPublicacao;
+	
+	
 }
