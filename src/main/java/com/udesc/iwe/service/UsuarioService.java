@@ -53,16 +53,19 @@ public class UsuarioService {
 		usuarioRepository.deleteById(idUsuario);
 	}
 	
-	public Usuario atualizarUsuario(Usuario usuario) {
-		Long idUsuario = usuario.getIdUsuario();
+	public Usuario atualizarUsuario(Usuario usuarioAtualizado) {
+		Long idUsuario = usuarioAtualizado.getIdUsuario();
 		Usuario usuarioExistente= usuarioRepository.findById(idUsuario).orElseThrow(() -> new UsuarioNaoEncontrado("Usuário não encontrado com o id: " + idUsuario));
 		
-		usuarioExistente.setNome(usuario.getNome());
-		usuarioExistente.setCpf(usuario.getCpf());
-		usuarioExistente.setEmail(usuario.getEmail());
-		usuarioExistente.setSenha(usuario.getSenha());
+		if(usuarioExistente != null) {
+		usuarioExistente.setNome(usuarioAtualizado.getNome());
+		usuarioExistente.setCpf(usuarioAtualizado.getCpf());
+		usuarioExistente.setEmail(usuarioAtualizado.getEmail());
+		usuarioExistente.setSenha(usuarioAtualizado.getSenha());
 		
 		return usuarioRepository.save(usuarioExistente);
+	}
+		return null;
 	}
 	
 	public Usuario buscarUsuarioPorId(Long idUsuario) {
