@@ -11,8 +11,8 @@ import com.udesc.iwe.models.Resposta;
 public interface RespostaRepository extends JpaRepository<Resposta, Long>{
 
 	@Query(nativeQuery = true, value = "SELECT r.* FROM iwe.resposta r " +
-	           "WHERE r.id_pergunta = :perguntaId")
-	    List<Resposta> findRespostasByPerguntaId(@Param("perguntaId") Long perguntaId);
+	           "WHERE r.id_pergunta = :idPergunta")
+	    List<Resposta> findRespostasByPerguntaId(@Param("idPergunta") Long idPergunta);
 	
 	    //retorna uma lista de respostas associadas a uma pergunta, pelo id_pergunta
 }
