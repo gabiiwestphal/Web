@@ -19,7 +19,7 @@ private final CategoriaRepository categoriaRepository;
 	}
 	
 	public List<Categoria> listarTodasCategorias(){
-		return categoriaRepository.findAll();
+		return categoriaRepository.findAllCategorias();
 	}
-	
+
 }

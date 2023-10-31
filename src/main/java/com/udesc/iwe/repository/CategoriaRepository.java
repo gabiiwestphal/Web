@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.udesc.iwe.models.Categoria;
+import com.udesc.iwe.models.Livro;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 
@@ -16,4 +17,9 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 	    List<Categoria> findCategoriasByRespostas(@Param("arrayRespostas") List<Long> arrayRespostas);
 	
 	//retorna uma lista de categorias, associadas a uma resposta
+	
+    @Query(nativeQuery = true, value = "SELECT * FROM iwe.categoria")
+    List<Categoria> findAllCategorias();
+    
+    //retorna todas as categorias
 }

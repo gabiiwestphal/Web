@@ -21,7 +21,7 @@ public class LivroService {
 	
 	//listar livros
 	public List<Livro> listarTodosLivros(){
-		return livroRepository.findAll();
+		return livroRepository.findAllLivros();
 	}
 	
 	//salvar livros
@@ -30,9 +30,9 @@ public class LivroService {
 	}
 	
 	//achar livro pelo id
-	public Livro buscarLivroPeloId(Long idLivro) {
+	/*public Livro buscarLivroPeloId(Long idLivro) {
 		return livroRepository.findById(idLivro).orElseThrow(() -> new LivroNaoEncontrado("Livro não encontrado com o Id: " + idLivro));
-	}
+	}*/
 	
 	//achar o livro pela categoria
 	public List<Livro> buscarLivrosPorCategoria(Long idCategoria){

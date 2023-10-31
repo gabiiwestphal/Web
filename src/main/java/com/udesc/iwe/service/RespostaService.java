@@ -30,8 +30,8 @@ public class RespostaService {
 		return respostaRepository.findRespostasByPerguntaId(idPergunta);
 	}
 	
-	//cálculo da categoria mais votada com base nas respostas
-	public Categoria calcularCategoriaMaisVotada(List<Resposta> respostas) {
+	//cálculo da categoria mais votada com base nas respostas 
+	/*public Categoria calcularCategoriaMaisVotada(List<Resposta> respostas) {
 		
 		Map<Categoria, Integer> contagemCategorias = new HashMap<>();
 		Categoria categoriaMaisVotada = null;
@@ -48,5 +48,5 @@ public class RespostaService {
 			}
 		}
 		return categoriaMaisVotada;
-	}
+	}*/
 }

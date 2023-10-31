@@ -70,7 +70,7 @@ public class UsuarioService {
 	}
 	
 	public List<Usuario> listarTodosUsuarios(){
-		return usuarioRepository.findAll();
+		return usuarioRepository.findAllUsuarios();
 	}
 	
 }
