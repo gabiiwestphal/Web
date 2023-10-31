@@ -53,8 +53,7 @@ public class UsuarioService {
 		usuarioRepository.deleteById(idUsuario);
 	}
 	
-	public Usuario atualizarUsuario(Usuario usuarioAtualizado) {
-		Long idUsuario = usuarioAtualizado.getIdUsuario();
+	public Usuario atualizarUsuario(Long idUsuario, Usuario usuarioAtualizado) {
 		Usuario usuarioExistente= usuarioRepository.findById(idUsuario).orElseThrow(() -> new UsuarioNaoEncontrado("Usuário não encontrado com o id: " + idUsuario));
 		
 		usuarioExistente.setNome(usuarioAtualizado.getNome());
