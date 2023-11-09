@@ -1,6 +1,8 @@
 package com.udesc.iwe.repository;
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,4 +15,7 @@ public interface CurtidoRepository extends JpaRepository<Curtido, Long>{ // clas
     Curtido findByUsuarioId(@Param("idUsuario") Long idUsuario); // especifica o tipo do valor que vai ser passado como parametro para a consulta
 	    
 	    //livros curtidos por um usuário pelo idUsuario.
+	
+    @Query(nativeQuery = true, value = "SELECT * FROM iwe.curtido")
+    List<Curtido> findAllCurtidos();
 }

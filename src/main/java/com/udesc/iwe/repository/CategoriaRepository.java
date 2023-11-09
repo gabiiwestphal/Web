@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.udesc.iwe.models.Categoria;
-import com.udesc.iwe.models.Livro;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 

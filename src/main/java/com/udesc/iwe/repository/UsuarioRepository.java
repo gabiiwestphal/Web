@@ -18,5 +18,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{ //entid
     List<Usuario> findAllUsuarios();
     
     //retorna todos os usuarios
+    
+    Optional<Usuario> findById(Long id);
 
 }

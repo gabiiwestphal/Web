@@ -18,5 +18,8 @@ public interface RespostaRepository extends JpaRepository<Resposta, Long>{
 
 	@Query(nativeQuery = true, value = "SELECT * FROM sua_tabela WHERE id_usuario = :idUsuario")
     List<Resposta> findRespostasByUsuarioId(@Param("idUsuario") Long idUsuario);
+	
+    @Query(nativeQuery = true, value = "SELECT * FROM iwe.resposta")
+    List<Resposta> findAllRespostas();
 }
 
