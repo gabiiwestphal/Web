@@ -49,4 +49,8 @@ public class RespostaService {
 		}
 		return categoriaMaisVotada;
 	}
+
+	public List<Resposta> listarTodasRespostas() {
+		return respostaRepository.findAllRespostas();
+	}
 }
