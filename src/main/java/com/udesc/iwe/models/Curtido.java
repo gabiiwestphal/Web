@@ -1,6 +1,8 @@
 package com.udesc.iwe.models;
 
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,7 @@ public class Curtido {
 	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", unique = true, nullable = false)
 	private Usuario usuario;
 	
-	@Column(name = "livros", columnDefinition = "text[]")
-	private String[] livros;
+	@Column(name = "livros", columnDefinition = "text[]") //ver se não é json 
+	private List<String> livros;
 
 }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.udesc.iwe.models.Curtido;
+import com.udesc.iwe.models.Usuario;
 
 public interface CurtidoRepository extends JpaRepository<Curtido, Long>{ // classe/entidade curtido e long é a chave primária
 
@@ -18,4 +19,9 @@ public interface CurtidoRepository extends JpaRepository<Curtido, Long>{ // clas
 	
     @Query(nativeQuery = true, value = "SELECT * FROM iwe.curtido")
     List<Curtido> findAllCurtidos();
+    
+    Curtido findByUsuario(Usuario usuario); 
+    //curtido pelo objeto usuario.
+    
+    
 }
