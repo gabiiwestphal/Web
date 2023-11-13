@@ -25,7 +25,7 @@ public class Curtido {
 	private Long idCurtido;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", unique = true, nullable = false)
+	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
 	private Usuario usuario;
 	
 	@Column(name = "livros", columnDefinition = "text[]") //ver se não é json 

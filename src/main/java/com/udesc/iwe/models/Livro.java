@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -37,7 +38,7 @@ public class Livro {
     @Column(name = "autor", nullable = false)
     private String autor;
 
-	@NotBlank
+	@NotNull
     @Column(name = "pagina")
     private Integer pagina;
 

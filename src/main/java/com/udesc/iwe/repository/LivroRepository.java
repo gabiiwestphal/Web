@@ -9,7 +9,7 @@ import com.udesc.iwe.models.Livro;
 
 public interface LivroRepository extends JpaRepository<Livro, Long> {
 
-	@Query(nativeQuery = true, value = "SELECT * FROM iwe.livro WHERE nome = :titulo")
+	@Query(nativeQuery = true, value = "SELECT * FROM iwe.livro WHERE titulo = :titulo")
     List<Livro> findByTituloLivro(@Param("titulo") String titulo);
 	
 	//retorna lista de livros pelo titulo

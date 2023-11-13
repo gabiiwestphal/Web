@@ -29,7 +29,6 @@ public class CategoriaController {
     public ResponseEntity<List<Categoria>> listarTodasCategorias() {
         List<Categoria> categorias = categoriaService.listarTodasCategorias();
         return new ResponseEntity<>(categorias, HttpStatus.OK);
-    }
-
+    }    
 
 }
