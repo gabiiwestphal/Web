@@ -30,13 +30,13 @@ public class RespostaController {
     }
 
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<Resposta> salvarResposta(@RequestBody Resposta resposta) {
         Resposta respostaSalva = respostaService.salvarResposta(resposta);
         return new ResponseEntity<>(respostaSalva, HttpStatus.CREATED);
-    }
+    }*/
 
-
+    
     @GetMapping("/pergunta/{idPergunta}")
     public ResponseEntity<List<Resposta>> consultarRespostasPorIdPergunta(@PathVariable Long idPergunta) {
         List<Resposta> respostas = respostaService.consultarRespostasPorIdPergunta(idPergunta);

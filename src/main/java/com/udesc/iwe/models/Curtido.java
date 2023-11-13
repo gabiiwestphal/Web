@@ -15,7 +15,7 @@ import lombok.Data;
 
 
 @Entity
-@Table(name = "curtido")
+@Table(name = "curtido", schema = "iwe")
 @Data
 public class Curtido {
 	
@@ -27,8 +27,9 @@ public class Curtido {
 	@ManyToOne
 	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
 	private Usuario usuario;
-	
-	@Column(name = "livros", columnDefinition = "text[]") //ver se não é json 
+
+	@Column(name = "livros", columnDefinition = "json")
 	private List<String> livros;
+
 
 }

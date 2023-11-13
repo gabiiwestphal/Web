@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
-@Table(name = "pergunta")
+@Table(name = "pergunta", schema = "iwe")
 @Data
 public class Pergunta {
 
@@ -20,6 +20,6 @@ public class Pergunta {
 	private Long idPergunta;
 	
 	@NotBlank
-	@Column(name = "pergunta", nullable = false)
-	private String pergunta;
+	@Column(name = "conteudo_pergunta", nullable = false)
+	private String conteudoPergunta;
 }

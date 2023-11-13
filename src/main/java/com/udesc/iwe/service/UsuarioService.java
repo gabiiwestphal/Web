@@ -9,18 +9,21 @@ import org.springframework.stereotype.Service;
 import com.udesc.iwe.exception.AutenticacaoException;
 import com.udesc.iwe.exception.UsuarioNaoEncontrado;
 import com.udesc.iwe.exception.ValidarEmailException;
+import com.udesc.iwe.models.Curtido;
 import com.udesc.iwe.models.Usuario;
+import com.udesc.iwe.repository.CurtidoRepository;
 import com.udesc.iwe.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
 
 	private final UsuarioRepository usuarioRepository; //dependências
+	private final CurtidoRepository curtidoRepository;
 	
 	@Autowired
-	public UsuarioService(UsuarioRepository usuarioRepository) {
+	public UsuarioService(UsuarioRepository usuarioRepository, CurtidoRepository curtidoRepository) {
 		this.usuarioRepository = usuarioRepository;
-		
+		this.curtidoRepository = curtidoRepository;
 	}
 	
 	public Usuario salvarUsuario(Usuario usuario) {
@@ -50,6 +53,13 @@ public class UsuarioService {
 	}
 	
 	public void deletarUsuario(Long idUsuario) {
+		
+		//remover o curtido associado
+		Curtido curtido = curtidoRepository.findByUsuarioId(idUsuario);
+		if(curtido != null) {
+			curtidoRepository.delete(curtido);
+		}
+		//remover usuaário	
 		usuarioRepository.deleteById(idUsuario);
 	}
 	

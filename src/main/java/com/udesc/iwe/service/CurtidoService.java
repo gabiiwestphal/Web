@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.udesc.iwe.exception.LivroNaoEncontrado;
 import com.udesc.iwe.models.Curtido;
+import com.udesc.iwe.models.Livro;
 import com.udesc.iwe.models.Usuario;
 import com.udesc.iwe.repository.CurtidoRepository;
 
@@ -16,14 +18,15 @@ public class CurtidoService {
 
 	    private final CurtidoRepository curtidoRepository;
 	    private final UsuarioService usuarioService;
+	    private final LivroService livroService;
 
 
 	    @Autowired
-	    public CurtidoService(CurtidoRepository curtidoRepository, UsuarioService usuarioService) {
+	    public CurtidoService(CurtidoRepository curtidoRepository, UsuarioService usuarioService, LivroService livroService) {
 	        this.curtidoRepository = curtidoRepository;
 	        this.usuarioService = usuarioService;
+	        this.livroService = livroService;
 	    }
-
 
 	    public Curtido listarLivrosCurtidosPorUsuario(Long idUsuario) {
 	        Usuario usuario = usuarioService.buscarUsuarioPorId(idUsuario);
@@ -33,6 +36,13 @@ public class CurtidoService {
 
 	    public Curtido adicionarLivroAosCurtidos(Long idUsuario, Long idLivro) { //adiciona um livro aos curtidos do usuário.
 	        Usuario usuario = usuarioService.buscarUsuarioPorId(idUsuario);
+	        
+	        //validar se o livro existe antes de adicionar
+	        Livro livro = livroService.buscarLivroPeloId(idLivro);
+	        if(livro == null)
+	        	throw new LivroNaoEncontrado("Livro não encontrado com o ID: " + idLivro);
+        
+	        
 	        Curtido curtido = curtidoRepository.findByUsuario(usuario);
 
 
@@ -62,14 +72,18 @@ public class CurtidoService {
 
 
 	            if (livros != null) {//se tiver o livro na lista, remove e salva.
+	            	//verifca se existe o livro antes de remover
+	            	if(livros.contains(String.valueOf(idLivro))) {
 	                livros.remove(String.valueOf(idLivro));
 	                curtido.setLivros(livros);
 	                return curtidoRepository.save(curtido);
+	            } else {
+	            	throw new LivroNaoEncontrado("livro não encontrado na lista do usuário");
 	            }
 	        }
-
+	    }
 
 	        return curtido;
-	    }
-	}
+	  }
+}
 

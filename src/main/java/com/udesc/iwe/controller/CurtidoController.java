@@ -3,7 +3,6 @@ package com.udesc.iwe.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.udesc.iwe.models.Curtido;
 import com.udesc.iwe.service.CurtidoService;
