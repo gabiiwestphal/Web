@@ -32,7 +32,6 @@ public class LivroController {
         return new ResponseEntity<>(livros, HttpStatus.OK);
     }
 
-
     @PostMapping
     public ResponseEntity<Livro> salvarLivro(@RequestBody Livro livro) {
         Livro livroSalvo = livroService.salvarLivro(livro);
