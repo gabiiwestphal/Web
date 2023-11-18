@@ -56,13 +56,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/login").permitAll()
                 .antMatchers("/livros/cadastrar", "/livros/deletar/**", "/livros/atualizar/**", "/usuarios/cadastrar", "/usuarios/buscar/**", "/usuarios/atualizar/**", "/usuarios/deletar/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-            .loginPage("/login")
-            .defaultSuccessUrl("/livros")
                 .and()
             .httpBasic()
                 .and()
