@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ public class UsuarioController {
 	        this.usuarioService = usuarioService;
 	    }
 
+	    @PreAuthorize("hasRole('ADMIN')")
 	    @PostMapping("/cadastrar")
 	    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
 	        Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
@@ -36,7 +38,8 @@ public class UsuarioController {
 	        return new ResponseEntity<>(usuario, HttpStatus.OK);
 	    }
 
-	    @GetMapping("/{idUsuario}")
+	    @PreAuthorize("hasRole('ADMIN')")
+	    @GetMapping("/buscar/{idUsuario}")
 	    public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable Long idUsuario) {
 	        Usuario usuario = usuarioService.buscarUsuarioPorId(idUsuario);
 	        return new ResponseEntity<>(usuario, HttpStatus.OK);
@@ -48,13 +51,15 @@ public class UsuarioController {
 	        return new ResponseEntity<>(usuarios, HttpStatus.OK);
 	    }
 
-	    @PutMapping("/{idUsuario}")
+	    @PreAuthorize("hasRole('ADMIN')")
+	    @PutMapping("/atualizar/{idUsuario}")
 	    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long idUsuario, @RequestBody Usuario usuarioAtualizado) {
 	        Usuario usuarioAtualizadoResult = usuarioService.atualizarUsuario(idUsuario, usuarioAtualizado);
 	        return new ResponseEntity<>(usuarioAtualizadoResult, HttpStatus.OK);
 	    }
 
-	    @DeleteMapping("/{idUsuario}")
+	    @PreAuthorize("hasRole('ADMIN')")
+	    @DeleteMapping("/deletar/{idUsuario}")
 	    public ResponseEntity<Void> deletarUsuario(@PathVariable Long idUsuario) {
 	        usuarioService.deletarUsuario(idUsuario);
 	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
