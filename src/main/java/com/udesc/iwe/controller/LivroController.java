@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,8 @@ public class LivroController {
         return new ResponseEntity<>(livros, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/cadastrar")
     public ResponseEntity<Livro> salvarLivro(@RequestBody Livro livro) {
         Livro livroSalvo = livroService.salvarLivro(livro);
         return new ResponseEntity<>(livroSalvo, HttpStatus.CREATED);
@@ -60,14 +62,16 @@ public class LivroController {
     }
 
 
-    @DeleteMapping("/{idLivro}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/deletar/{idLivro}")
     public ResponseEntity<Void> deletarLivro(@PathVariable Long idLivro) {
         livroService.deletarLivro(idLivro);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
-    @PutMapping("/{idLivro}")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/atualizar/{idLivro}")
     public ResponseEntity<Livro> atualizarLivro(@PathVariable Long idLivro, @RequestBody Livro livroAtualizado) {
         Livro livroAtualizadoResult = livroService.atualizarLivro(idLivro, livroAtualizado);
         return new ResponseEntity<>(livroAtualizadoResult, HttpStatus.OK);
