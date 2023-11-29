@@ -1,6 +1,7 @@
 package com.udesc.iwe.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,6 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private CustomAccessDeniedHandler customAccessDeniedHandler;
+	
+	@Value("${frontend.url}")
+	private String frontendUrl;
 	
 	public WebSecurityConfig(CustomAccessDeniedHandler customAccessDeniedHandler) {
 		this.customAccessDeniedHandler = customAccessDeniedHandler;
@@ -69,6 +73,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
+            .loginPage(frontendUrl + "/users/login")
+            .permitAll()
                 .and()
             .httpBasic()
                 .and()
