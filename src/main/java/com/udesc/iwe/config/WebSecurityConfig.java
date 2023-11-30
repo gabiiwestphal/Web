@@ -67,8 +67,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .csrf().disable()
-            .authorizeRequests()
+        .cors().and().csrf().disable()
+            .authorizeRequests()            .antMatchers("/**").permitAll()
                 .antMatchers("/livros/cadastrar", "/livros/deletar/**", "/livros/atualizar/**", "/usuarios/cadastrar", "/usuarios/buscar/**", "/usuarios/atualizar/**", "/usuarios/deletar/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -84,7 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*"); // Permitir solicitações de todas as origens
+        configuration.addAllowedOrigin(frontendUrl); // Permitir solicitações de todas as origens
         configuration.addAllowedMethod("*"); // Permitir todos os métodos HTTP
         configuration.addAllowedHeader("*"); // Permitir todos os cabeçalhos
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
