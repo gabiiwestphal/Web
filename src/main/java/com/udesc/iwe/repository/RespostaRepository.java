@@ -1,7 +1,10 @@
 package com.udesc.iwe.repository;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.udesc.iwe.models.Livro;
+import com.udesc.iwe.models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,5 +24,8 @@ public interface RespostaRepository extends JpaRepository<Resposta, Long>{
 	
     @Query(nativeQuery = true, value = "SELECT * FROM iwe.resposta")
     List<Resposta> findAllRespostas();
+
+	Optional<Resposta> findById(Long id);
+
 }
 

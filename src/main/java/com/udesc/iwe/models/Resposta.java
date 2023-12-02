@@ -26,7 +26,7 @@ public class Resposta {
 	private Categoria categoria;
 	
 	@NotBlank
-	@Column(name = "conteudo", length = 50)
+	@Column(name = "conteudo", length = 250)
 	private String conteudo;
 	
 	@ManyToOne

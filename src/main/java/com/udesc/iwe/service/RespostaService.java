@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.udesc.iwe.exception.UsuarioNaoEncontrado;
+import com.udesc.iwe.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,10 @@ public class RespostaService {
 	public List<Resposta> consultarRespostasPorIdPergunta(Long idPergunta){
 		return respostaRepository.findRespostasByPerguntaId(idPergunta);
 	}
-	
+	public Resposta buscarRespostaPorId(Long idResposta) {
+		return respostaRepository.findById(idResposta).orElseThrow(() -> new RuntimeException("Resposta não encontrada" + idResposta));
+	}
+
 	//cálculo da categoria mais votada com base nas respostas 
 	public Categoria calcularCategoriaMaisVotada(List<Resposta> respostas) {
 		

@@ -2,6 +2,7 @@ package com.udesc.iwe.controller;
 
 import java.util.List;
 
+import com.udesc.iwe.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import com.udesc.iwe.service.RespostaService;
 
 @RestController
 @RequestMapping("/api/respostas")
-public class RespostaController {
+public class  RespostaController {
 
 
     private final RespostaService respostaService;
@@ -35,6 +36,11 @@ public class RespostaController {
         Resposta respostaSalva = respostaService.salvarResposta(resposta);
         return new ResponseEntity<>(respostaSalva, HttpStatus.CREATED);
     }*/
+    @GetMapping("/buscar/{idResposta}")
+    public ResponseEntity<Resposta> buscarRespostaPorId(@PathVariable Long idResposta) {
+        Resposta resposta = respostaService.buscarRespostaPorId(idResposta);
+        return new ResponseEntity<>(resposta, HttpStatus.OK);
+    }
 
     
     @GetMapping("/pergunta/{idPergunta}")
