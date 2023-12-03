@@ -17,6 +17,7 @@ import com.udesc.iwe.repository.RespostaRepository;
 public class RespostaService {
 
 	private final RespostaRepository respostaRepository;
+
 	
 	@Autowired
 	public RespostaService(RespostaRepository respostaRepository) {
@@ -37,7 +38,7 @@ public class RespostaService {
 
 	//cálculo da categoria mais votada com base nas respostas 
 	public Categoria calcularCategoriaMaisVotada(List<Resposta> respostas) {
-		
+
 		Map<Categoria, Integer> contagemCategorias = new HashMap<>();
 		Categoria categoriaMaisVotada = null;
 		int contagemMaxima = 0;
