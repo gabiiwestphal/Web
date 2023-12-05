@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 @Data
@@ -31,5 +33,6 @@ public class Resposta {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_pergunta", referencedColumnName = "id_pergunta", nullable = false)
+	@JsonBackReference(value = "respostaRef")
 	private Pergunta pergunta;
 }

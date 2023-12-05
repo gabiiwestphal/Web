@@ -1,13 +1,12 @@
 package com.udesc.iwe.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "pergunta", schema = "iwe")
@@ -22,4 +21,8 @@ public class Pergunta {
 	@NotBlank
 	@Column(name = "conteudo_pergunta", nullable = false)
 	private String conteudoPergunta;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pergunta")
+	@JsonManagedReference(value = "respostasRef")
+	private List<Resposta> respostas;
 }
